@@ -1,0 +1,39 @@
+{
+  "_comment": "Canonical industry (Apollo/LinkedIn-style) -> per-platform value. Extend this file whenever a new ICP segment needs an industry not listed. For Prospeo, values MUST exist in their enum list (prospeo.io/api-docs > Enum Values > Industries); verify via their Search Suggestions API if unsure.",
+  "industries": {
+    "Computer Software": {
+      "apollo": "computer software",
+      "prospeo": "Software Development"
+    },
+    "Information Technology & Services": {
+      "apollo": "information technology & services",
+      "prospeo": "IT Services and IT Consulting"
+    },
+    "Financial Services": {
+      "apollo": "financial services",
+      "prospeo": "Financial Services"
+    },
+    "Marketing & Advertising": {
+      "apollo": "marketing & advertising",
+      "prospeo": "Advertising Services"
+    },
+    "Hospital & Health Care": {
+      "apollo": "hospital & health care",
+      "prospeo": "Hospitals and Health Care"
+    },
+    "E-commerce": {
+      "apollo": "internet",
+      "prospeo": "Technology, Information and Internet"
+    }
+  },
+  "employee_ranges": {
+    "_comment": "Apollo wants 'min,max' strings; Prospeo wants its enum range labels.",
+    "1-10":      { "apollo": "1,10",      "prospeo": "1-10" },
+    "11-50":     { "apollo": "11,50",     "prospeo": "11-50" },
+    "51-200":    { "apollo": "51,200",    "prospeo": "51-200" },
+    "201-500":   { "apollo": "201,500",   "prospeo": "201-500" },
+    "501-1000":  { "apollo": "501,1000",  "prospeo": "501-1000" },
+    "1001-5000": { "apollo": "1001,5000", "prospeo": "1001-5000" },
+    "5001+":     { "apollo": "5001,10000", "prospeo": "5001-10000" }
+  }
+}

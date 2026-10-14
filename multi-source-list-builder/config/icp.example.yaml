@@ -1,0 +1,52 @@
+# Canonical ICP spec — the single source of truth for a list-build run.
+# Captured in ONE intake (Step 1): infer sensible defaults, surface them here,
+# and only ask the user about genuinely ambiguous/missing items + the destination.
+run_name: us-saas-sales-vps
+
+# 1. Company list (names or domains). Empty include = pure filter-based search.
+companies:
+  include: []            # e.g. ["acme.com", "Beta Corp"]
+  exclude: []            # e.g. ["competitor.com"]
+
+# 2. Title list
+titles:
+  include: ["VP Sales", "VP of Sales", "Vice President Sales", "Head of Sales"]
+  exclude: ["Assistant", "Intern"]
+
+# 3. Country list
+countries:
+  include: ["United States"]
+  exclude: []
+
+# 4. Company size (ranges from mappings/industry_map.json employee_ranges keys)
+company_size:
+  include: ["51-200"]
+  exclude: []
+
+# 5. Company revenue (optional). Supported on BOTH Apollo and Prospeo.
+#    Give a plain figure; Step 2 maps it (Apollo=integer, Prospeo=band string
+#    via mappings/revenue_map.json, e.g. 500000 -> "500K").
+company_revenue:
+  min: 500000          # e.g. >= $0.5M ; null/omit if not filtering on revenue
+  max: null
+  include_unknown_revenue: false   # Prospeo: drop companies with no known revenue
+
+# 6. Clay destination
+clay:
+  table_id: main-prospects   # resolved via config/clay_tables.json
+
+# Optional refinements
+person:
+  seniorities: ["vp", "head"]   # canonical: owner, founder, c_suite, partner, vp, head, director, manager, senior, entry
+company:
+  industries_include: ["Computer Software"]   # canonical = Apollo/LinkedIn taxonomy; mapped via mappings/industry_map.json
+  industries_exclude: []
+
+# Default output fields the user receives (always produced by normalize_and_merge.py):
+# first_name, last_name, full_name, company_name, person_location, company_hq,
+# industry, email, linkedin_url, website, employee_size, revenue
+output_fields_note: defaults_always_included
+
+limits:
+  max_records_per_source: 1000
+  max_leads: 1000        # hard cap on the final pushed list

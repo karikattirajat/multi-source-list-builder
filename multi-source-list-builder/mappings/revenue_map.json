@@ -1,0 +1,36 @@
+{
+  "_comment": "Company revenue filtering per platform. Prospeo DOES support revenue (verified live June 2026) — earlier skill text wrongly said it didn't. Map a user's revenue figure to each platform's accepted form.",
+
+  "prospeo": {
+    "filter_key": "company_revenue",
+    "value_format": {
+      "min": "<enum string>",
+      "max": "<enum string, optional>",
+      "include_unknown_revenue": false
+    },
+    "enum_values_low_to_high": ["<100K", "100K", "500K", "1M", "5M", "10M", "25M", "50M", "100M", "250M", "500M", "1B", "5B", "10B+"],
+    "notes": "min/max are STRINGS from the enum, NOT integers (500000 is rejected; use \"500K\"). include_unknown_revenue=false drops companies with no known revenue. Requires Starter plan or higher. Example: minimum $0.5M -> {\"company_revenue\": {\"min\": \"500K\", \"include_unknown_revenue\": false}}.",
+    "human_to_enum": {
+      "100000": "100K", "0.1M": "100K",
+      "500000": "500K", "0.5M": "500K",
+      "1000000": "1M", "1M": "1M",
+      "5000000": "5M", "5M": "5M",
+      "10000000": "10M", "10M": "10M",
+      "25000000": "25M", "50000000": "50M",
+      "100000000": "100M", "250000000": "250M", "500000000": "500M",
+      "1000000000": "1B", "5000000000": "5B", "10000000000": "10B+"
+    },
+    "rounding_rule": "If a user's figure falls between two enum bands, pick the NEAREST band that does not exclude wanted companies — i.e. round the MIN down to the next-lower band (e.g. $0.7M min -> \"500K\")."
+  },
+
+  "apollo": {
+    "filter_key": "revenue_range",
+    "value_format": {"min": "<integer>", "max": "<integer, optional>"},
+    "notes": "Apollo wants raw INTEGERS (no symbols/commas). Minimum $0.5M -> {\"revenue_range\": {\"min\": 500000}}. This is the People Search `revenue_range` parameter."
+  },
+
+  "clay": {
+    "filter_key": null,
+    "notes": "find-and-enrich-contacts-at-company has no revenue filter. Revenue can only be enriched as a company data point ('Annual Revenue'), not filtered. Filter revenue on the Apollo/Prospeo legs instead."
+  }
+}

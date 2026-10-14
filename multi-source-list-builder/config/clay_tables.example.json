@@ -1,0 +1,11 @@
+{
+  "_comment": "Clay table ID -> webhook URL registry. Copy to clay_tables.json. Claude Code adds new tables here automatically during run intake when an unknown table ID is given.",
+  "main-prospects": {
+    "webhook_url": "https://api.clay.com/v3/sources/webhook/pull-in-data-from-a-webhook-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "description": "Primary consolidated prospect table"
+  },
+  "enterprise-segment": {
+    "webhook_url": "https://api.clay.com/v3/sources/webhook/pull-in-data-from-a-webhook-YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY",
+    "description": "Enterprise ICP table"
+  }
+}

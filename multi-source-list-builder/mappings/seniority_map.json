@@ -1,0 +1,16 @@
+{
+  "_comment": "Canonical seniority -> per-platform enum. Apollo enum is exact (person_seniorities[]). Prospeo values VERIFIED against the live /search-person API (June 2026): valid Prospeo seniorities are exactly 'C-Suite', 'Director', 'Entry', 'Founder/Owner', 'Head', 'Intern', 'Manager', 'Partner', 'Senior', 'Vice President'. Prospeo merges owner+founder into 'Founder/Owner' and has NO standalone 'Owner'/'Founder'/'VP'/'C-Level' (those return 'Invalid seniority' 400s).",
+  "seniorities": {
+    "owner":    { "apollo": "owner",    "prospeo": "Founder/Owner" },
+    "founder":  { "apollo": "founder",  "prospeo": "Founder/Owner" },
+    "c_suite":  { "apollo": "c_suite",  "prospeo": "C-Suite" },
+    "partner":  { "apollo": "partner",  "prospeo": "Partner" },
+    "vp":       { "apollo": "vp",       "prospeo": "Vice President" },
+    "head":     { "apollo": "head",     "prospeo": "Head" },
+    "director": { "apollo": "director", "prospeo": "Director" },
+    "manager":  { "apollo": "manager",  "prospeo": "Manager" },
+    "senior":   { "apollo": "senior",   "prospeo": "Senior" },
+    "entry":    { "apollo": "entry",    "prospeo": "Entry" },
+    "intern":   { "apollo": "intern",   "prospeo": "Intern" }
+  }
+}

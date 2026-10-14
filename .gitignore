@@ -1,0 +1,11 @@
+.env
+*.env
+!.env.example
+multi-source-list-builder/runs/*
+!multi-source-list-builder/runs/.gitkeep
+multi-source-list-builder/config/clay_tables.json
+*.csv
+*.jsonl
+*.zip
+__pycache__/
+.DS_Store
